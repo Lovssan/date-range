@@ -5,10 +5,6 @@
 - yarn
 - npm run dev
 
-## Production
-
-- npm run build
-
 ## TODO
 
 - Component accepts two ranges of values ​​in props
