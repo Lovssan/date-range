@@ -1,8 +1,18 @@
-# React + Vite
+# React + Vite + MUI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Developments
 
-Currently, two official plugins are available:
+- yarn
+- npm run dev
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Production
+
+- npm run build
+
+## TODO
+
+- Component accepts two ranges of values ​​in props
+
+- With the button you can change the display of months and years
+
+- You can add the ability to move the sliders by creating a local state
