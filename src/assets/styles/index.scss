@@ -42,7 +42,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
+	background-color: rgba(255, 255, 255, 0.1);
 	max-width: 980px;
 	padding: 40px 30px;
 	width: 100%;
@@ -50,7 +50,7 @@ body {
 }
 
 input {
-	background-color: #343434 !important;
+	background-color: #f4f4f4 !important;
 	border: 1px solid transparent;
 	color: $white;
 	font-size: 16px;
@@ -59,4 +59,9 @@ input {
 	margin: 0.7rem;
 	outline: none;
 	width: 200px;
+}
+
+label {
+	color: #333044;
+	text-align: center;
 }

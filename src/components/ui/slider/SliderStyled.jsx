@@ -9,12 +9,14 @@ export const SladerDate = styled(Slider)({
 	padding: '15px 0',
 	margin: '15px 20px',
 	width: '90%',
+
 	'& .MuiSlider-thumb': {
 		height: 18,
 		width: 18,
 		border: '5px solid #5CADEA',
 		backgroundColor: '#fff',
 		boxShadow: boxShadow,
+
 		'&:focus, &:hover, &.Mui-active': {
 			boxShadow:
 				'0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
@@ -33,6 +35,7 @@ export const SladerDate = styled(Slider)({
 		backgroundColor: 'white',
 		borderRadius: '10px',
 		padding: '6px 12px',
+
 		'&:before': {
 			position: 'absolute',
 			content: '""',
@@ -45,6 +48,7 @@ export const SladerDate = styled(Slider)({
 			bottom: '1px',
 			left: '50%'
 		},
+
 		'& *': {
 			color: '#0167B3'
 		}
@@ -53,6 +57,7 @@ export const SladerDate = styled(Slider)({
 	'& .MuiSlider-thumb[data-index="1"] ': {
 		'& .MuiSlider-valueLabel': {
 			top: '77px',
+
 			'&:before': {
 				top: '-7px'
 			}
@@ -72,13 +77,22 @@ export const SladerDate = styled(Slider)({
 	'& .MuiSlider-markLabel': {
 		fontVariantNumeric: 'lining-nums proportional-nums',
 		fontSize: '12px',
-		color: '#333333',
-		'@media (max-width: 700px)': {
+		color: '#999999',
+
+		'@media (max-width: 880px)': {
 			rotate: '60deg',
 			top: '54px'
 		}
 	},
-	'& .MuiSlider-markLabelActive': {
-		color: '#999999'
+	'& .MarkLabelYear': {
+		color: '#333333'
+	},
+	'& .MarkLabelMonthMax': {
+		display: 'none'
+	},
+	'& .MarkLabelMonth': {
+		'@media (max-width: 480px)': {
+			display: 'none'
+		}
 	}
 })

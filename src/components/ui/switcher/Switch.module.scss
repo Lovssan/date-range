@@ -24,37 +24,25 @@
 			white-space: nowrap;
 			border-bottom-left-radius: 3px;
 			border-bottom-right-radius: 3px;
+			transition: opacity 0.3s ease;
 			&:last-of-type {
 				bottom: 15%;
-				opacity: 0.6;
+				opacity: 1;
 				border-bottom: none;
-				transition: opacity 0.3s ease;
 			}
 			&:first-of-type {
 				bottom: 60%;
-				opacity: 1;
+				opacity: 0.5;
 				border-bottom: 1px solid #848585;
-				transition: opacity 0.3s ease;
 			}
 		}
-		// > div:first-of-type {
-		// 	top: 25%;
-		// 	opacity: 1;
-		// 	border-bottom: 1px solid #848585;
-		// 	transition: opacity 0.3s ease;
-		// }
-		// > div:last-of-type {
-		// 	top: 55%;
-		// 	opacity: 0.6;
-		// 	border-bottom: none;
-		// 	transition: opacity 0.3s ease;
-		// }
+
 		> input:checked ~ div:last-of-type {
-			opacity: 1;
+			opacity: 0.6;
 			border-bottom: 1px solid #848585;
 		}
 		> input:checked + div:first-of-type {
-			opacity: 0.6;
+			opacity: 1;
 			border-bottom: none;
 		}
 	}

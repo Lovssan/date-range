@@ -4,63 +4,66 @@ import Layout from './components/Layout/Layout'
 import styles from './components/Layout/Layout.module.scss'
 import SliderDate from './components/slider-date/Slider-date'
 
-const App = () => {
-	const [value1, setValue1] = useState('2020-05')
-	const [value2, setValue2] = useState('2022-01')
-	const [value3, setValue3] = useState('2020-05')
-	const [value4, setValue4] = useState('2020-11')
+import { formatDate, getDate } from './utils/date.utils'
 
-	const dateRange = [new Date(value1), new Date(value2)]
-	const currentDateRange = [new Date(value3), new Date(value4)]
+const App = () => {
+	const [dateRange, setDateRange] = useState([
+		getDate('2020-05'),
+		getDate('2022-01')
+	])
+	const [selectedRange, setSelectedRange] = useState([
+		getDate('2020-06'),
+		getDate('2021-01')
+	])
 
 	return (
-		<>
+		<Layout heading='Slider date range component'>
 			<form className={styles.wrapper}>
-				<label className='wrapper-inner-page'>
+				<label>
 					Min and max range
 					<input
 						type='month'
-						max={value2}
-						name='minRange'
-						value={value1}
-						onChange={e => setValue1(e.target.value)}
+						value={formatDate(dateRange[0])}
+						onChange={e =>
+							setDateRange([getDate(e.target.value), dateRange[1]])
+						}
 					/>
 					-
 					<input
 						type='month'
-						name='maxRange'
-						min={value1}
-						value={value2}
-						onChange={e => setValue2(e.target.value)}
+						value={formatDate(dateRange[1])}
+						onChange={e =>
+							setDateRange([dateRange[0], getDate(e.target.value)])
+						}
 					/>
 				</label>
 
-				<label className='wrapper-inner-page'>
+				<label>
 					Current range
 					<input
 						type='month'
-						name='minCurrentRange'
-						min={value1}
-						max={value4}
-						value={value3}
-						onChange={e => setValue3(e.target.value)}
+						value={formatDate(selectedRange[0])}
+						onChange={e =>
+							setSelectedRange([getDate(e.target.value), selectedRange[1]])
+						}
 					/>
 					-
 					<input
 						type='month'
-						name='maxCurrentRange'
-						min={value3}
-						max={value2}
-						value={value4}
-						onChange={e => setValue4(e.target.value)}
+						value={formatDate(selectedRange[1])}
+						onChange={e =>
+							setSelectedRange([selectedRange[0], getDate(e.target.value)])
+						}
 					/>
 				</label>
 			</form>
 
-			<Layout heading='Slider date range component'>
-				<SliderDate dateRange={dateRange} currentDateRange={currentDateRange} />
-			</Layout>
-		</>
+			<SliderDate
+				dateRange={dateRange}
+				selectedRange={selectedRange}
+				setSelectedRange={setSelectedRange}
+			/>
+		</Layout>
 	)
 }
 

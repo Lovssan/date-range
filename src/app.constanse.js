@@ -12,3 +12,5 @@ export const unitsMonth = [
 	'Ноябрь',
 	'Декабрь'
 ]
+
+export const monthsInYear = 12

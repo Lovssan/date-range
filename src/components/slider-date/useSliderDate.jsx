@@ -1,13 +1,16 @@
+import clsx from 'clsx'
 import { useMemo, useState } from 'react'
 
-import { unitsMonth } from '../../app.constanse'
-import { getRange } from './slider.utils'
+import { monthsInYear, unitsMonth } from '../../app.constanse'
+import { arrToDate } from '../../utils/date.utils'
+import { getRange } from '../../utils/slider.utils'
 
-export const useSlider = (dateRange, currentDateRange) => {
+export const useSlider = (dateRange, selectedRange, setSelectedRange) => {
 	const minYear = dateRange[0].getFullYear()
 
 	const sliderRange = getRange(dateRange)
-	let currentRange = getRange(currentDateRange, minYear)
+
+	let currentRange = getRange(selectedRange, minYear)
 
 	const [isMonthMarks, setIsMonthMarks] = useState(false)
 
@@ -15,8 +18,9 @@ export const useSlider = (dateRange, currentDateRange) => {
 		if (!Array.isArray(newValue)) {
 			return
 		}
-		const minDistance = 1
 
+		setSelectedRange(arrToDate(newValue, minYear))
+		const minDistance = 1
 		if (activeThumb === 0) {
 			currentRange = [
 				Math.min(newValue[0], currentRange[1] - minDistance),
@@ -33,9 +37,9 @@ export const useSlider = (dateRange, currentDateRange) => {
 	const valueLabelFormat = value => {
 		const unitsYear = minYear
 
-		let valueN = Math.floor(value % 12)
+		const valueN = Math.floor(value % monthsInYear)
 
-		let year = unitsYear + Math.floor(value / 12)
+		const year = unitsYear + Math.floor(value / monthsInYear)
 
 		return `${unitsMonth[valueN]} ${year}`
 	}
@@ -43,18 +47,37 @@ export const useSlider = (dateRange, currentDateRange) => {
 	const getMarks = () => {
 		const marksYear = []
 		const marksMonth = []
+		const labelCount = sliderRange[1] - sliderRange[0]
+
 		for (let i = sliderRange[0]; i <= sliderRange[1]; i++) {
-			let years = Math.floor(i / 12)
-			let monthNum = i < 12 ? i : i % 12
-			if (i % 12 === 0) {
+			const years = Math.floor(i / monthsInYear)
+			const monthNum = i < monthsInYear ? i : i % monthsInYear
+			if (i % monthsInYear === 0) {
 				marksYear.push({
 					value: i,
-					label: `${minYear + years}`
+					label: (
+						<span
+							className={clsx({
+								['MarkLabelYear']: isMonthMarks
+							})}
+						>
+							{minYear + years}
+						</span>
+					)
 				})
 			} else {
 				marksMonth.push({
 					value: i,
-					label: `${unitsMonth[monthNum].slice(0, 3).toLocaleLowerCase()}`
+					label: (
+						<span
+							className={clsx({
+								['MarkLabelMonth']: labelCount > 18,
+								['MarkLabelMonthMax']: labelCount > 27
+							})}
+						>
+							{unitsMonth[monthNum].slice(0, 3).toLocaleLowerCase()}
+						</span>
+					)
 				})
 			}
 		}

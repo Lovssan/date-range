@@ -3,7 +3,7 @@ import Switch from '../ui/switcher/Switch'
 
 import { useSlider } from './useSliderDate'
 
-const SliderDate = ({ dateRange, currentDateRange }) => {
+const SliderDate = ({ dateRange, selectedRange, setSelectedRange }) => {
 	const {
 		isMonthMarks,
 		setIsMonthMarks,
@@ -12,7 +12,7 @@ const SliderDate = ({ dateRange, currentDateRange }) => {
 		currentRange,
 		getMarks,
 		sliderRange
-	} = useSlider(dateRange, currentDateRange)
+	} = useSlider(dateRange, selectedRange, setSelectedRange)
 
 	const { marksYear, marksMonth } = getMarks()
 
